@@ -72,3 +72,8 @@ clearButton.addEventListener('click', () => {operation = ''});
 clearButton.addEventListener('click', () => {displayValue = ''});
 clearButton.addEventListener('click', () => {secondValue = ''});
 clearButton.addEventListener('click', () => {display.textContent = ''});
+
+// clear latest digit
+
+const backspace = document.querySelector('.backspace');
+backspace.addEventListener('click', () => {display.textContent = display.textContent.substring(0,display.textContent.length-1)})
