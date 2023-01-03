@@ -11,7 +11,8 @@ function subtract(a, b) {
  }
 
  function divide(a, b) {
-     return a/b;
+    if (b == 0) {alert('Wise guy, eh!?')}
+    else {return a/b};
  }
 
 function operate(operator, a, b) {
@@ -37,10 +38,10 @@ function populateDisplay() {
     const numbers = document.querySelectorAll('.number');
     for (i=0; i<numbers.length; i++) {
         numbers[i].addEventListener('click', (e) => {display.textContent += e.target.textContent});
-        // numbers[i].addEventListener('click', (e) => {displayValue += e.target.textContent});
-        // numbers[i].addEventListener('click', () => {console.log(displayValue)});
     }
 }
+
+document.addEventListener('keydown', (e) => {display.textContent += e.key})
 
 populateDisplay();
 
@@ -48,11 +49,9 @@ const operators = document.querySelectorAll('.operation');
 
 function currentOperation() {
     for (i=0; i<operators.length; i++) {
-       // operators[i].addEventListener('click', (e) => {operation = e.target.textContent});
+        // operators[i].addEventListener('click', () => {operate(operation, displayValue, display.textContent)});
         operators[i].addEventListener('click', (e) => {operation = e.target.textContent});
         operators[i].addEventListener('click', () => {displayValue = display.textContent});
-        operators[i].addEventListener('click', () => {console.log(operation)});
-        operators[i].addEventListener('click', () => {console.log(displayValue)});
         operators[i].addEventListener('click', () => {display.textContent = ''});
     }
 }
@@ -64,8 +63,9 @@ currentOperation();
 const equalsButton = document.querySelector('.equals');
 
 equalsButton.addEventListener('click', () => {secondValue = display.textContent});
-equalsButton.addEventListener('click', () => {console.log(secondValue)});
 equalsButton.addEventListener('click', () => {display.textContent = operate(operation, displayValue, secondValue)});
+
+// button to reset
 
 const clearButton = document.querySelector('.clear');
 clearButton.addEventListener('click', () => {operation = ''});
