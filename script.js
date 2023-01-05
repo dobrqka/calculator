@@ -41,7 +41,9 @@ function populateDisplay() {
     }
 }
 
-document.addEventListener('keydown', (e) => {display.textContent += e.key})
+// keyboard support
+
+// document.addEventListener('keydown', (e) => {display.textContent += e.key})
 
 populateDisplay();
 
@@ -49,9 +51,19 @@ const operators = document.querySelectorAll('.operation');
 
 function currentOperation() {
     for (i=0; i<operators.length; i++) {
-        // operators[i].addEventListener('click', () => {operate(operation, displayValue, display.textContent)});
+        // operators[i].addEventListener('click', () => {displayValue = operate(operation, displayValue, display.textContent)})
+        // operators[i].addEventListener('click', () => {displayValue = display.textContent});
+
+        operators[i].addEventListener('click', () => {
+            if (displayValue == undefined) {
+                displayValue = display.textContent;
+            }
+            else {
+                displayValue = operate(operation, displayValue, display.textContent);
+            }
+        })
+        operators[i].addEventListener('click', () => {console.log(displayValue)});
         operators[i].addEventListener('click', (e) => {operation = e.target.textContent});
-        operators[i].addEventListener('click', () => {displayValue = display.textContent});
         operators[i].addEventListener('click', () => {display.textContent = ''});
     }
 }
