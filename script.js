@@ -41,9 +41,13 @@ function populateDisplay() {
     }
 }
 
-// keyboard support
+// keyboard support for numbers
 
-// document.addEventListener('keydown', (e) => {display.textContent += e.key})
+document.addEventListener('keydown', (e) => {
+   if (isNaN(e.key) == false) {
+      display.textContent += e.key
+   }
+})
 
 populateDisplay();
 
@@ -68,6 +72,49 @@ function currentOperation() {
     }
 }
 
+document.addEventListener('keydown', (e) => {
+    if (e.key == '+') {
+        if (displayValue == undefined) {
+            displayValue = display.textContent;
+        }
+        else {
+            displayValue = operate(operation, displayValue, display.textContent);
+        }
+        operation = '+';
+        display.textContent = '';
+    }
+    else if (e.key == '-') {
+        if (displayValue == undefined) {
+            displayValue = display.textContent;
+        }
+        else {
+            displayValue = operate(operation, displayValue, display.textContent);
+        }
+        operation = '-';
+        display.textContent = '';
+    }
+    else if (e.key == '*') {
+        if (displayValue == undefined) {
+            displayValue = display.textContent;
+        }
+        else {
+            displayValue = operate(operation, displayValue, display.textContent);
+        }
+        operation = '*';
+        display.textContent = '';
+    }
+    else if (e.key == '/') {
+        if (displayValue == undefined) {
+            displayValue = display.textContent;
+        }
+        else {
+            displayValue = operate(operation, displayValue, display.textContent);
+        }
+        operation = '/';
+        display.textContent = '';
+    }
+})
+
 let secondValue;
 
 currentOperation();
@@ -76,16 +123,37 @@ const equalsButton = document.querySelector('.equals');
 
 equalsButton.addEventListener('click', () => {secondValue = display.textContent});
 equalsButton.addEventListener('click', () => {display.textContent = operate(operation, displayValue, secondValue)});
-
+document.addEventListener('keydown', (e) => {
+    if (e.key == '=' || e.key == 'Enter') {
+        secondValue = display.textContent;
+        display.textContent = operate(operation, displayValue, secondValue);
+    }
+});
 // button to reset
 
 const clearButton = document.querySelector('.clear');
 clearButton.addEventListener('click', () => {operation = ''});
-clearButton.addEventListener('click', () => {displayValue = ''});
+clearButton.addEventListener('click', () => {displayValue = undefined});
 clearButton.addEventListener('click', () => {secondValue = ''});
 clearButton.addEventListener('click', () => {display.textContent = ''});
+document.addEventListener('keydown', (e) => {
+    if (e.key == 'Escape') {
+        operation = '';
+        displayValue = undefined;
+        secondValue = '';
+        display.textContent = '';
+    }
+});
 
 // clear latest digit
 
 const backspace = document.querySelector('.backspace');
 backspace.addEventListener('click', () => {display.textContent = display.textContent.substring(0,display.textContent.length-1)})
+document.addEventListener('keydown', (e) => {
+    if (e.key == 'Backspace')
+    {
+        display.textContent = display.textContent.substring(0,display.textContent.length-1)
+    }
+})
+
+// document.addEventListener('keydown', (e) => {console.log(e.key)})
