@@ -157,3 +157,10 @@ document.addEventListener('keydown', (e) => {
 })
 
 // document.addEventListener('keydown', (e) => {console.log(e.key)})
+
+
+
+// show 0 at beginning, show result after each operation
+// round answers with long decimals so that they don’t overflow the screen
+// add a . button for decimals, don't let the user type more than one decimal symbol
+// make it look nice with some CSS
