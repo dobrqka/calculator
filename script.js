@@ -127,6 +127,9 @@ document.addEventListener('keydown', (e) => {
     if (e.key == '=' || e.key == 'Enter') {
         secondValue = display.textContent;
         display.textContent = operate(operation, displayValue, secondValue);
+        if (Number(display.textContent) % 1 != 0) {
+            display.textContent = Number(display.textContent).toFixed(6);
+        }
     }
 });
 // button to reset
@@ -159,8 +162,6 @@ document.addEventListener('keydown', (e) => {
 // document.addEventListener('keydown', (e) => {console.log(e.key)})
 
 
-
-// show 0 at beginning, show result after each operation
-// round answers with long decimals so that they don’t overflow the screen
 // add a . button for decimals, don't let the user type more than one decimal symbol
+// show 0 at beginning, show result after each operation
 // make it look nice with some CSS
