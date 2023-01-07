@@ -41,7 +41,14 @@ let operation;
 function populateDisplay() {
     const numbers = document.querySelectorAll('.number');
     for (i=0; i<numbers.length; i++) {
-        numbers[i].addEventListener('click', (e) => {display.textContent += e.target.textContent});
+        numbers[i].addEventListener('click', (e) => {
+            if (display.textContent == 0) {
+                display.textContent = e.target.textContent;
+            }
+            else {
+                display.textContent += e.target.textContent;
+            }
+        });
     }
 }
 
@@ -49,7 +56,12 @@ function populateDisplay() {
 
 document.addEventListener('keydown', (e) => {
    if (isNaN(e.key) == false) {
-      display.textContent += e.key
+      if (display.textContent == 0) {
+        display.textContent = e.key
+      }
+      else {
+        display.textContent += e.key
+      }
    }
 })
 
@@ -142,13 +154,13 @@ const clearButton = document.querySelector('.clear');
 clearButton.addEventListener('click', () => {operation = ''});
 clearButton.addEventListener('click', () => {displayValue = undefined});
 clearButton.addEventListener('click', () => {secondValue = ''});
-clearButton.addEventListener('click', () => {display.textContent = ''});
+clearButton.addEventListener('click', () => {display.textContent = '0'});
 document.addEventListener('keydown', (e) => {
     if (e.key == 'Escape') {
         operation = '';
         displayValue = undefined;
         secondValue = '';
-        display.textContent = '';
+        display.textContent = '0';
     }
 });
 
@@ -188,5 +200,5 @@ document.addEventListener('keydown', (e) => {
     }
 })
 
-// show 0 at beginning, show result after each operation
+// show result after each operation
 // make it look nice with some CSS
