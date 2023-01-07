@@ -12,7 +12,7 @@ function subtract(a, b) {
 
  function divide(a, b) {
     if (b == 0) {
-        alert('Wise guy, eh!?')
+        alert('Wise guy, eh!?');
         secondValue = '';
         display.textContent = '';
     }
@@ -200,4 +200,6 @@ document.addEventListener('keydown', (e) => {
     }
 })
 
-// make it look nice with some CSS
+// make it look nice with some CSS and toggle operator buttons
+// add the option to use negative numbers
+// fix division by 0 crashing calculator while running it mid-calculation

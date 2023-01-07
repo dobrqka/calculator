@@ -1,18 +1,33 @@
+body {
+    display: table;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+
 .container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: table-cell;
+    vertical-align: middle;
     flex-direction: column;
     gap: 10px;
+    background-color: red;
+    height: 500px;
 }
 
 .buttons {
+    margin-left: auto;
+    margin-right: auto;
+    width: 200px;
     display: grid;
-    grid-template-columns: 30px 30px 30px;
+    grid-template-columns: 30px 30px 30px 30px;
     gap: 10px;
 }
 
 .display {
+    margin-left: auto;
+    margin-right: auto;
     color: white;
     font-weight: 900;
     font-size: 20px;
