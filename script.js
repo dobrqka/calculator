@@ -11,7 +11,11 @@ function subtract(a, b) {
  }
 
  function divide(a, b) {
-    if (b == 0) {alert('Wise guy, eh!?')}
+    if (b == 0) {
+        alert('Wise guy, eh!?')
+        secondValue = '';
+        display.textContent = '';
+    }
     else {return a/b};
  }
 
