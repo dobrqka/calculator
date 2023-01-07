@@ -42,7 +42,7 @@ function populateDisplay() {
     const numbers = document.querySelectorAll('.number');
     for (i=0; i<numbers.length; i++) {
         numbers[i].addEventListener('click', (e) => {
-            if (display.textContent == 0) {
+            if (display.textContent == 0 || display.textContent == displayValue) {
                 display.textContent = e.target.textContent;
             }
             else {
@@ -56,7 +56,7 @@ function populateDisplay() {
 
 document.addEventListener('keydown', (e) => {
    if (isNaN(e.key) == false) {
-      if (display.textContent == 0) {
+      if (display.textContent == 0 || display.textContent == displayValue) {
         display.textContent = e.key
       }
       else {
@@ -84,7 +84,7 @@ function currentOperation() {
         })
         operators[i].addEventListener('click', () => {console.log(displayValue)});
         operators[i].addEventListener('click', (e) => {operation = e.target.textContent});
-        operators[i].addEventListener('click', () => {display.textContent = ''});
+        operators[i].addEventListener('click', () => {display.textContent = displayValue});
     }
 }
 
@@ -97,7 +97,7 @@ document.addEventListener('keydown', (e) => {
             displayValue = operate(operation, displayValue, display.textContent);
         }
         operation = '+';
-        display.textContent = '';
+        display.textContent = displayValue;
     }
     else if (e.key == '-') {
         if (displayValue == undefined) {
@@ -107,7 +107,7 @@ document.addEventListener('keydown', (e) => {
             displayValue = operate(operation, displayValue, display.textContent);
         }
         operation = '-';
-        display.textContent = '';
+        display.textContent = displayValue;
     }
     else if (e.key == '*') {
         if (displayValue == undefined) {
@@ -117,7 +117,7 @@ document.addEventListener('keydown', (e) => {
             displayValue = operate(operation, displayValue, display.textContent);
         }
         operation = '*';
-        display.textContent = '';
+        display.textContent = displayValue;
     }
     else if (e.key == '/') {
         if (displayValue == undefined) {
@@ -127,7 +127,7 @@ document.addEventListener('keydown', (e) => {
             displayValue = operate(operation, displayValue, display.textContent);
         }
         operation = '/';
-        display.textContent = '';
+        display.textContent = displayValue;
     }
 })
 
@@ -200,5 +200,4 @@ document.addEventListener('keydown', (e) => {
     }
 })
 
-// show result after each operation
 // make it look nice with some CSS
