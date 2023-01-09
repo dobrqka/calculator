@@ -5,7 +5,7 @@ body {
 }
 
 .container {
-    width: 440px;
+    width: 435px;
     height: 550px;
     background-color: rgb(170, 170, 170);
     display: flex;
@@ -33,12 +33,14 @@ body {
     grid-template-columns: auto auto auto auto;
     border: 2px solid black;
     border-radius: 20px;
+    background-color: black;
+    gap: 1px;
 }
 
-.display {
+.display-screen {
     color: rgb(0, 0, 0);
     font-weight: 900;
-    font-size: 45px;
+    font-size: 50px;
     background-color: rgb(223, 223, 223);
     width: 400px;
     height: 100px;
@@ -50,18 +52,20 @@ body {
     border-radius: 20px;
 }
 
+.display {
+   font-family: Inter,Helvetica Neue,Helvetica,Arial,sans-serif;
+   padding: 10px;
+}
+
 button {
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 900;
+    font-family: Inter,Helvetica Neue,Helvetica,Arial,sans-serif;
 }
 
 #zero {
     grid-column: span 2;
     border-bottom-left-radius: 20px;
-}
-
-.toggle-button {
-    border-color: yellow;
 }
 
 .number {
@@ -97,4 +101,14 @@ button {
 
 .equals {
     border-bottom-right-radius: 20px;
+}
+
+h1 {
+    font-size: 40px;
+    font-family: Inter,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+
+.toggle-button {
+    background-color: rgb(159, 159, 255);
+    border-style: 1px solid black;
 }

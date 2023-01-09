@@ -52,22 +52,27 @@ function populateDisplay() {
     }
 }
 
+const operators = document.querySelectorAll('.operation');
+
 // keyboard support for numbers
 
 document.addEventListener('keydown', (e) => {
    if (isNaN(e.key) == false) {
+    
       if (display.textContent == 0 || display.textContent == displayValue) {
         display.textContent = e.key
       }
       else {
         display.textContent += e.key
       }
+    //   for (i=0; i<operators.length; i++) {
+    //     operators[i].classList.remove("toggle-button");
+    //   }
    }
-})
+});
 
 populateDisplay();
 
-const operators = document.querySelectorAll('.operation');
 
 function currentOperation() {
     for (i=0; i<operators.length; i++) {
@@ -84,6 +89,7 @@ function currentOperation() {
         })
         operators[i].addEventListener('click', () => {console.log(displayValue)});
         operators[i].addEventListener('click', (e) => {operation = e.target.textContent});
+        // operators[i].addEventListener('click', (e) => {e.target.classList.add("toggle-button")});
         operators[i].addEventListener('click', () => {display.textContent = displayValue});
     }
 }
@@ -200,6 +206,6 @@ document.addEventListener('keydown', (e) => {
     }
 })
 
-// make it look nice with some CSS and toggle operator buttons
+// toggle operator buttons
 // add the option to use negative numbers
 // fix division by 0 crashing calculator while running it mid-calculation
