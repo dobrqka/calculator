@@ -42,6 +42,9 @@ function populateDisplay() {
     const numbers = document.querySelectorAll('.number');
     for (i=0; i<numbers.length; i++) {
         numbers[i].addEventListener('click', (e) => {
+            for (i=0; i<operators.length; i++) {
+                operators[i].classList.remove("toggle-button");
+              }
             if (display.textContent == 0 || display.textContent == displayValue) {
                 display.textContent = e.target.textContent;
             }
@@ -52,27 +55,26 @@ function populateDisplay() {
     }
 }
 
-const operators = document.querySelectorAll('.operation');
 
 // keyboard support for numbers
 
 document.addEventListener('keydown', (e) => {
    if (isNaN(e.key) == false) {
-    
+    for (i=0; i<operators.length; i++) {
+        operators[i].classList.remove("toggle-button");
+      }
       if (display.textContent == 0 || display.textContent == displayValue) {
         display.textContent = e.key
       }
       else {
         display.textContent += e.key
       }
-    //   for (i=0; i<operators.length; i++) {
-    //     operators[i].classList.remove("toggle-button");
-    //   }
    }
 });
 
 populateDisplay();
 
+const operators = document.querySelectorAll('.operation');
 
 function currentOperation() {
     for (i=0; i<operators.length; i++) {
@@ -89,7 +91,7 @@ function currentOperation() {
         })
         operators[i].addEventListener('click', () => {console.log(displayValue)});
         operators[i].addEventListener('click', (e) => {operation = e.target.textContent});
-        // operators[i].addEventListener('click', (e) => {e.target.classList.add("toggle-button")});
+        operators[i].addEventListener('click', (e) => {e.target.classList.add("toggle-button")});
         operators[i].addEventListener('click', () => {display.textContent = displayValue});
     }
 }
@@ -103,6 +105,7 @@ document.addEventListener('keydown', (e) => {
             displayValue = operate(operation, displayValue, display.textContent);
         }
         operation = '+';
+        document.querySelector("#add").classList.add("toggle-button");
         display.textContent = displayValue;
     }
     else if (e.key == '-') {
@@ -113,6 +116,7 @@ document.addEventListener('keydown', (e) => {
             displayValue = operate(operation, displayValue, display.textContent);
         }
         operation = '-';
+        document.querySelector("#subtract").classList.add("toggle-button");
         display.textContent = displayValue;
     }
     else if (e.key == '*') {
@@ -123,6 +127,7 @@ document.addEventListener('keydown', (e) => {
             displayValue = operate(operation, displayValue, display.textContent);
         }
         operation = '*';
+        document.querySelector("#multiply").classList.add("toggle-button");
         display.textContent = displayValue;
     }
     else if (e.key == '/') {
@@ -133,6 +138,7 @@ document.addEventListener('keydown', (e) => {
             displayValue = operate(operation, displayValue, display.textContent);
         }
         operation = '/';
+        document.querySelector("#divide").classList.add("toggle-button");
         display.textContent = displayValue;
     }
 })
@@ -147,6 +153,7 @@ equalsButton.addEventListener('click', () => {secondValue = display.textContent}
 equalsButton.addEventListener('click', () => {display.textContent = operate(operation, displayValue, secondValue)});
 document.addEventListener('keydown', (e) => {
     if (e.key == '=' || e.key == 'Enter') {
+        e.preventDefault();
         secondValue = display.textContent;
         display.textContent = operate(operation, displayValue, secondValue);
         if (Number(display.textContent) % 1 != 0 && Number(display.textContent).toString().split('.')[1].length > 6) {
@@ -157,15 +164,15 @@ document.addEventListener('keydown', (e) => {
 // button to reset
 
 const clearButton = document.querySelector('.clear');
-clearButton.addEventListener('click', () => {operation = ''});
+clearButton.addEventListener('click', () => {operation = undefined});
 clearButton.addEventListener('click', () => {displayValue = undefined});
-clearButton.addEventListener('click', () => {secondValue = ''});
+clearButton.addEventListener('click', () => {secondValue = undefined});
 clearButton.addEventListener('click', () => {display.textContent = '0'});
 document.addEventListener('keydown', (e) => {
     if (e.key == 'Escape') {
-        operation = '';
+        operation = undefined;
         displayValue = undefined;
-        secondValue = '';
+        secondValue = undefined;
         display.textContent = '0';
     }
 });
@@ -206,6 +213,5 @@ document.addEventListener('keydown', (e) => {
     }
 })
 
-// toggle operator buttons
 // add the option to use negative numbers
 // fix division by 0 crashing calculator while running it mid-calculation
