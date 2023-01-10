@@ -11,12 +11,7 @@ function subtract(a, b) {
  }
 
  function divide(a, b) {
-    if (b == 0) {
-        alert('Wise guy, eh!?');
-        secondValue = '';
-        display.textContent = '';
-    }
-    else {return a/b};
+    return a/b;
  }
 
 function operate(operator, a, b) {
@@ -30,8 +25,8 @@ function operate(operator, a, b) {
         return multiply(a, b);
     }
     else if (operator == '/') {
-        return divide(a, b);
-    }
+            return divide(a, b);
+        }
 }
 
 const display = document.querySelector('.display')
@@ -150,14 +145,35 @@ currentOperation();
 const equalsButton = document.querySelector('.equals');
 
 equalsButton.addEventListener('click', () => {secondValue = display.textContent});
-equalsButton.addEventListener('click', () => {display.textContent = operate(operation, displayValue, secondValue)});
+equalsButton.addEventListener('click', () => {
+    if (operation == '/' && secondValue == 0) {
+        alert('Division by 0? Are you trying to break the universe?');
+        secondValue = undefined;
+        display.textContent = displayValue;
+        document.querySelector("#divide").classList.add("toggle-button");
+    }
+    else { 
+        display.textContent = operate(operation, displayValue, secondValue)
+        if (Number(display.textContent) % 1 != 0 && Number(display.textContent).toString().split('.')[1].length > 6) {
+            display.textContent = Number(display.textContent).toFixed(6);
+        }
+    }
+});
 document.addEventListener('keydown', (e) => {
     if (e.key == '=' || e.key == 'Enter') {
         e.preventDefault();
         secondValue = display.textContent;
-        display.textContent = operate(operation, displayValue, secondValue);
-        if (Number(display.textContent) % 1 != 0 && Number(display.textContent).toString().split('.')[1].length > 6) {
+        if (operation == '/' && secondValue == 0) {
+            alert('Division by 0? Are you trying to break the universe?');
+            secondValue = undefined;
+            display.textContent = displayValue;
+            document.querySelector("#divide").classList.add("toggle-button");
+        }
+        else {
+            display.textContent = operate(operation, displayValue, secondValue);
+            if (Number(display.textContent) % 1 != 0 && Number(display.textContent).toString().split('.')[1].length > 6) {
             display.textContent = Number(display.textContent).toFixed(6);
+            }
         }
     }
 });
@@ -168,12 +184,20 @@ clearButton.addEventListener('click', () => {operation = undefined});
 clearButton.addEventListener('click', () => {displayValue = undefined});
 clearButton.addEventListener('click', () => {secondValue = undefined});
 clearButton.addEventListener('click', () => {display.textContent = '0'});
+clearButton.addEventListener('click', () => {
+    for (i=0; i<operators.length; i++) {
+        operators[i].classList.remove("toggle-button");
+      }
+})
 document.addEventListener('keydown', (e) => {
     if (e.key == 'Escape') {
         operation = undefined;
         displayValue = undefined;
         secondValue = undefined;
         display.textContent = '0';
+        for (i=0; i<operators.length; i++) {
+            operators[i].classList.remove("toggle-button");
+          }
     }
 });
 
@@ -213,5 +237,16 @@ document.addEventListener('keydown', (e) => {
     }
 })
 
-// add the option to use negative numbers
-// fix division by 0 crashing calculator while running it mid-calculation
+const negative = document.querySelector('.negative');
+negative.addEventListener('click', () => {
+    display.textContent = -display.textContent;
+})
+
+document.addEventListener('keydown', (e) => {
+    if (e.key == '_') {
+        e.preventDefault();
+        display.textContent = -display.textContent;
+    }
+});
+
+// tidy up js code
