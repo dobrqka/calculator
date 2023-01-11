@@ -217,20 +217,3 @@ document.addEventListener('keydown', (e) => {
         addDecimal();
     }
 });
-
-// button that converts the number to a negative number
-
-const negative = document.querySelector('.negative');
-
-negative.addEventListener('click', () => {
-    display.textContent = -display.textContent;
-});
-
-document.addEventListener('keydown', (e) => {
-    if (e.key == '_') {
-        e.preventDefault();
-        display.textContent = -display.textContent;
-    }
-});
-
-// final css stuff

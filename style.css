@@ -1,7 +1,22 @@
 body {
     background-color: rgb(241, 241, 241);
-    display:flex;
+}
+
+.header {
+    display: flex;
+    align-items: center;
     justify-content: center;
+    gap: 20px;
+    padding: 30px;
+}
+
+h1 {
+    font-size: 40px;
+    font-family: Inter,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+
+.gator {
+    width: 70px;
 }
 
 .container {
@@ -23,17 +38,6 @@ body {
     border: 2px solid black;
 }
 
-.buttons {
-    width: 400px;
-    height: 400px;
-    display: grid;
-    grid-template-columns: auto auto auto auto;
-    border: 2px solid black;
-    border-radius: 20px;
-    background-color: black;
-    gap: 1px;
-}
-
 .display-screen {
     color: rgb(0, 0, 0);
     font-weight: 900;
@@ -50,18 +54,32 @@ body {
 
 .display {
    font-family: Inter,Helvetica Neue,Helvetica,Arial,sans-serif;
-   padding: 10px;
+   padding: 20px;
+}
+
+.buttons {
+    width: 400px;
+    height: 400px;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    border: 2px solid black;
+    border-radius: 20px;
+    background-color: black;
+    gap: 2px;
 }
 
 button {
-    font-size: 22px;
+    font-size: 35px;
     font-weight: 900;
     font-family: Inter,Helvetica Neue,Helvetica,Arial,sans-serif;
+    border-style: solid;
 }
 
-#zero {
-    grid-column: span 2;
-    border-bottom-left-radius: 20px;
+.clear,
+.backspace,
+.negative {
+    background-color: rgb(51, 179, 166);
+    border-color: rgb(51, 179, 166);
 }
 
 .number {
@@ -74,20 +92,19 @@ button {
     border-color:rgb(252, 219, 73);
 }
 
-.clear,
-.backspace,
-.negative {
-    background-color: rgb(51, 179, 166);
-    border-color: rgb(51, 179, 166);
-}
-
 .operation,
 .equals {
-    background-color: rgb(64, 224, 208);
-    border-color: rgb(64, 224, 208);
+    background-color: rgb(43, 151, 140);
+    border-color: rgb(43, 151, 140);
+}
+
+#zero {
+    grid-column: span 2;
+    border-bottom-left-radius: 20px;
 }
 
 .clear {
+    grid-column: span 2;
     border-top-left-radius: 20px;
 }
 
@@ -99,11 +116,19 @@ button {
     border-bottom-right-radius: 20px;
 }
 
-h1 {
-    font-size: 40px;
-    font-family: Inter,Helvetica Neue,Helvetica,Arial,sans-serif;
+.toggle-button {
+    background-color: rgb(143, 206, 198);
+    border-color: rgb(143, 206, 198);
 }
 
-.toggle-button {
-    background-color: rgb(159, 159, 255);
+.footer {
+    display: flex;
+    justify-content: flex-end;
+    position: absolute;
+    right: 5px;
+    bottom: 10px;
+}
+
+.hedgehog {
+    height: 40px;
 }
