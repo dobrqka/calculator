@@ -13,10 +13,12 @@ body {
 h1 {
     font-size: 40px;
     font-family: Inter,Helvetica Neue,Helvetica,Arial,sans-serif;
+    font-size: calc((100vh - 550px)/8);
 }
 
 .gator {
-    width: 70px;
+    width: auto;
+    height: calc((100vh - 550px)/8);
 }
 
 .container {
@@ -129,6 +131,6 @@ button {
     bottom: 10px;
 }
 
-.hedgehog {
-    height: 40px;
+.chicken {
+    height: 100px;
 }
