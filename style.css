@@ -10,16 +10,16 @@ body {
     align-items: center;
     justify-content: center;
     gap: 20px;
-    padding: 30px;
+    padding: 20px;
 }
 
 h1 {
-    font-size: 40px;
+    font-size: 35px;
     font-family: Inter,Helvetica Neue,Helvetica,Arial,sans-serif;
 }
 
 .gator {
-    width: 70px;
+    width: 55px;
 }
 
 .container {
